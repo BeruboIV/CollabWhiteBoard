@@ -5,12 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- <link rel="stylesheet" href="styles.css" /> -->
   </head>
   <body>
     <div class="hint">row 1</div>
-    <div class="flex-container">
-      <div class="pallete">
+    <div class="row flex-container">
+      <div class="col s1 pallete" style="border: solid;">
         <div class="btn color red" style="background-color: red"></div>
         <div class="btn color black" style="background-color: black"></div>
         <div class="btn color green" style="background-color: green"></div>
@@ -22,12 +24,16 @@
         <div class="btn undo"></div>
         <div class="btn redo"></div>
       </div>
-      <div class="canvas">
+      <div class="col s9 canvas" id="canvas-wrapper" style="border: solid; height: 700px;">
         <canvas id="myCanvas"></canvas>
       </div>
-      <div class="chat"></div>
+      <div class="col s2 chat" style="border: solid;">
+        Hello WOrld<br>
+        How are you
+      </div>
     </div>
     <div>row 3</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="./whiteboard.js"></script>
   </body>
 </html>

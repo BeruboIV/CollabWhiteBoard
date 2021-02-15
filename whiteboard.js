@@ -2,30 +2,37 @@ document.addEventListener("DOMContentLoaded", function () {
   var canvas = document.getElementById("myCanvas");
   var context = canvas.getContext("2d");
   const option = document.querySelectorAll(".btn");
+  var canvasWrapper = document.getElementById("canvas-wrapper").getBoundingClientRect();
 
-  canvas.width = 1000;
-  canvas.height = 800;
+  canvas.width = canvasWrapper.width;
+  canvas.height = canvasWrapper.height;
+  /* This causes the canvas to refresh but it will work for now.*/
+  window.onresize = function(){
+    canvas.width = canvasWrapper.width;
+    canvas.height = canvasWrapper.height;
+  }
   var dragging = false;
   var radius = 5;
 
   var putPoint = function (canvas_point) {
     if (dragging == false) return;
     context.lineWidth = 2 * radius;
-
-    context.lineTo(canvas_point.offsetX, canvas_point.offsetY);
+    const X = canvas_point.offsetX;
+    const Y = canvas_point.offsetY;
+    context.lineTo(X, Y);
     context.stroke();
     context.beginPath();
     //   context.arc(e.clientX, e.clientY, 5, 0, 2 * Math.PI); // Was giving a lot of issues
     context.arc(
-      canvas_point.offsetX,
-      canvas_point.offsetY,
+      X,
+      Y,
       radius,
       0,
       2 * Math.PI
     );
     context.fill();
     context.beginPath();
-    context.moveTo(canvas_point.offsetX, canvas_point.offsetY);
+    context.moveTo(X, Y);
   };
 
   var engage = function (canvas_point) {
