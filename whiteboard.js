@@ -42,18 +42,22 @@ document.addEventListener("DOMContentLoaded", function () {
   canvas.addEventListener("mousemove", putPoint);
   canvas.addEventListener("mouseup", disengage);
 
+  ///////////////////////////////////////////////Event Listener for Pallete/////////////////////////////////////////////
   for (let i = 0; i < 10; i++) {
     option[i].addEventListener("click", function () {
       if (option[i].classList.contains("eraser")) {
+        // The existing content is kept where it doesn't overlap the new shape.
         context.globalCompositeOperation = "destination-out";
+        document.body.style.cursor = "auto"
       }
       if (option[i].classList.contains("pencil")) {
+        // This is the default setting and draws new shapes on top of the existing canvas content.
         context.globalCompositeOperation = "source-over";
       }
       if (option[i].classList.contains("red")) {
         context.fillStyle = "red";
         context.strokeStyle = "red";
-        context.globalCompositeOperation = "destination-over";
+        context.globalCompositeOperation = "source-over";
       }
       if (option[i].classList.contains("blue")) {
         context.fillStyle = "blue";
@@ -72,4 +76,5 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////
 });
