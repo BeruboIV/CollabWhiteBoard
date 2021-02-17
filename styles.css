@@ -1,37 +1,24 @@
-.flex-container {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.paint {
-  width: 100px;
-  height: 800px;
-  border: solid;
-}
-
-.canvas {
-  width: 1000px;
-  height: 800px;
-  border: solid;
-  margin-left: 30px;
-  margin-right: 30px;
+.cursor {
+  width: 20px;
+  height: 20px;
+  border: 1px dotted white;
+  background-color: white;
+  border-radius: 50%;
+  position: fixed;
+  -webkit-transition-duration: 200ms;
+          transition-duration: 200ms;
+  -webkit-transition-timing-function: ease-out;
+          transition-timing-function: ease-out;
+  pointer-events: none;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
 .chat {
-  width: 300px;
-  height: 800px;
-  border: solid;
+  z-index: 1;
 }
 
-/* For pallete options */
-.pallete {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
+canvas {
+  z-index: -1;
 }
-
-.btn {
-  width: 100px;
-  height: 70px;
-  border: solid;
-}
+/*# sourceMappingURL=styles.css.map */
