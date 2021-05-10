@@ -1,98 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>whiteboard</title>
-    <!-- Importing Google APIS -->
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
-    <link rel="stylesheet" href="./styles.css" />
-  </head>
-  <body>
-    <div class="cursor"></div>
-    <div class="col s12 pallete" style="border: solid">
-      <span>
-        <img
-          src="./images/mic.svg"
-          alt="mic"
-          style="width: 50px; height: 35px; margin-left: 700px"
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>whiteboard</title>
+        <!-- Importing Google APIS -->
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"
         />
-        <img
-          src="./images/speaker.svg"
-          alt="speaker"
-          style="width: 50px; height: 35px; margin-left: 10px"
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
         />
-      </span>
-      <a href="" class="end">End Meeting</a>
-      <!-- <button class="end">End Meeting</button> -->
-    </div>
+        <link rel="stylesheet" href="./styles.css" />
+        <!-- Required for socket to work -->
+        <script defer src="/socket.io/socket.io.js"></script>
+        <script src="./whiteboard.js"></script>
+    </head>
+    <body>
+        <div class="cursor"></div>
+        <div class="col s12 pallete" style="border: solid">
+            <span>
+                <img
+                    src="./images/mic.svg"
+                    alt="mic"
+                    style="width: 50px; height: 35px; margin-left: 700px"
+                />
+                <img
+                    src="./images/speaker.svg"
+                    alt="speaker"
+                    style="width: 50px; height: 35px; margin-left: 10px"
+                />
+            </span>
+            <a href="" class="end">End Meeting</a>
+            <!-- <button class="end">End Meeting</button> -->
+        </div>
 
-    <div class="row flex-container">
-      <div class="col s1 pallete" style="border-top: solid">
-        <div
-          class="btn color red"
-          style="background-color: red; width: 75%"
-        ></div>
-        <div
-          class="btn color black"
-          style="background-color: black; width: 75%"
-        ></div>
-        <div
-          class="btn color green"
-          style="background-color: green; width: 75%"
-        ></div>
-        <div
-          class="btn color blue"
-          style="background-color: blue; width: 75%"
-        ></div>
-        <!-- <div class="btn increase"></div>
+        <div class="row flex-container">
+            <div class="col s1 pallete" style="border-top: solid">
+                <div
+                    class="btn color red"
+                    style="background-color: red; width: 75%"
+                ></div>
+                <div
+                    class="btn color black"
+                    style="background-color: black; width: 75%"
+                ></div>
+                <div
+                    class="btn color green"
+                    style="background-color: green; width: 75%"
+                ></div>
+                <div
+                    class="btn color blue"
+                    style="background-color: blue; width: 75%"
+                ></div>
+                <!-- <div class="btn increase"></div>
         <div class="btn decrease"></div> -->
-        <img
-          src="./images/eraser.svg"
-          alt="eraser"
-          class="btn eraser"
-          style="width: 75%"
-        />
-        <img
-          src="./images/pencil.svg"
-          alt="pencil"
-          class="btn draw pencil"
-          style="width: 75%"
-        />
-        <img
-          src="./images/undo.svg"
-          alt="undo"
-          class="btn undo"
-          style="width: 75%"
-        />
-        <img
-          src="./images/redo.svg"
-          alt="undo"
-          class="btn redo"
-          style="width: 75%"
-        />
-      </div>
-      <div
-        class="col s9 canvas me"
-        id="canvas-wrapper"
-        style="border: solid; height: 700px"
-      >
-        <canvas id="myCanvas" style="margin-left: 0%"></canvas>
-      </div>
-      <div class="col s2 chat" style="border: solid; height: 700px"></div>
-    </div>
+                <img
+                    src="./images/eraser.svg"
+                    alt="eraser"
+                    class="btn eraser"
+                    style="width: 75%"
+                />
+                <img
+                    src="./images/pencil.svg"
+                    alt="pencil"
+                    class="btn draw pencil"
+                    style="width: 75%"
+                />
+                <img
+                    src="./images/undo.svg"
+                    alt="undo"
+                    class="btn undo"
+                    style="width: 75%"
+                />
+                <img
+                    src="./images/redo.svg"
+                    alt="undo"
+                    class="btn redo"
+                    style="width: 75%"
+                />
+            </div>
+            <div
+                class="col s9 canvas me"
+                id="canvas-wrapper"
+                style="border: solid; height: 700px"
+            >
+                <canvas id="myCanvas" style="margin-left: 0%"></canvas>
+            </div>
+            <div class="col s2 chat" style="border: solid; height: 700px"></div>
+        </div>
 
-    <div></div>
-    <!-- Importing Materialize CSS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="./whiteboard.js"></script>
-  </body>
+        <div></div>
+        <!-- Importing Materialize CSS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </body>
 </html>
