@@ -1,1 +1,1 @@
-# CollabWhiteBoard
+# WhiteBoard
