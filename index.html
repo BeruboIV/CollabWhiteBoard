@@ -6,37 +6,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>whiteboard</title>
     <!-- Importing Google APIS -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <div class="hint">row 1</div>
     <div class="cursor"></div>
+    <div class="col s12 pallete" style="border: solid">
+      <span>
+        <img
+          src="./images/mic.svg"
+          alt="mic"
+          style="width: 50px; height: 35px; margin-left: 700px"
+        />
+        <img
+          src="./images/speaker.svg"
+          alt="speaker"
+          style="width: 50px; height: 35px; margin-left: 10px"
+        />
+      </span>
+      <a href="" class="end">End Meeting</a>
+      <!-- <button class="end">End Meeting</button> -->
+    </div>
+
     <div class="row flex-container">
-      <div class="col s1 pallete" style="border: solid">
-        <div class="btn color red" style="background-color: red"></div>
-        <div class="btn color black" style="background-color: black"></div>
-        <div class="btn color green" style="background-color: green"></div>
-        <div class="btn color blue" style="background-color: blue"></div>
-        <div class="btn increase"></div>
-        <div class="btn decrease"></div>
-        <div class="btn eraser">eraser</div>
-        <div class="btn draw pencil">pencil</div>
-        <div class="btn undo"></div>
-        <div class="btn redo"></div>
+      <div class="col s1 pallete" style="border-top: solid">
+        <div
+          class="btn color red"
+          style="background-color: red; width: 75%"
+        ></div>
+        <div
+          class="btn color black"
+          style="background-color: black; width: 75%"
+        ></div>
+        <div
+          class="btn color green"
+          style="background-color: green; width: 75%"
+        ></div>
+        <div
+          class="btn color blue"
+          style="background-color: blue; width: 75%"
+        ></div>
+        <!-- <div class="btn increase"></div>
+        <div class="btn decrease"></div> -->
+        <img
+          src="./images/eraser.svg"
+          alt="eraser"
+          class="btn eraser"
+          style="width: 75%"
+        />
+        <img
+          src="./images/pencil.svg"
+          alt="pencil"
+          class="btn draw pencil"
+          style="width: 75%"
+        />
+        <img
+          src="./images/undo.svg"
+          alt="undo"
+          class="btn undo"
+          style="width: 75%"
+        />
+        <img
+          src="./images/redo.svg"
+          alt="undo"
+          class="btn redo"
+          style="width: 75%"
+        />
       </div>
-      <div class="col s9 canvas me" id="canvas-wrapper" style="border: solid; height: 700px">
-        <canvas id="myCanvas" style="margin-left: 0%" ></canvas>
+      <div
+        class="col s9 canvas me"
+        id="canvas-wrapper"
+        style="border: solid; height: 700px"
+      >
+        <canvas id="myCanvas" style="margin-left: 0%"></canvas>
       </div>
-      <div class="col s2 chat" style="border: solid">
-        Hello WOrld<br />
-        How are you
-      </div>
+      <div class="col s2 chat" style="border: solid; height: 700px"></div>
     </div>
-    <div>row 3
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A unde sapiente adipisci asperiores, repellendus odio cum ducimus magnam rerum possimus quia molestias perspiciatis, temporibus at, quam earum? Ipsam porro voluptate maiores exercitationem placeat dolorum deleniti natus, aut ex libero consequuntur molestiae ullam, atque suscipit dolor omnis fugit explicabo repudiandae esse. Ut vitae atque recusandae magni asperiores distinctio iste ab vero quam cumque architecto, eveniet rerum illum? Expedita fugit quam repellat assumenda accusamus odio, reprehenderit similique eum adipisci. Culpa quaerat, rerum consectetur voluptate in assumenda nihil repellat vel, omnis, vitae aut distinctio quam. Quis ea esse fugit possimus consectetur, ab at, molestiae accusantium laboriosam, veniam quaerat? Culpa optio enim possimus exercitationem ullam, quae sit nostrum, accusamus rerum nemo nulla ducimus, in eos sint eaque ut expedita sunt libero perferendis. Quia, esse. Ad numquam inventore, dolor iure quae expedita, officia laudantium assumenda hic quibusdam ipsa doloribus iusto dignissimos deserunt eos deleniti quasi facere voluptatibus blanditiis! Laudantium, qui quae! Vitae accusamus, tenetur magni iste quam maiores amet laboriosam nihil porro. Possimus quod dolorum eveniet unde dolores praesentium modi a illo aliquam debitis officia magnam est ea vel enim doloribus, voluptates iste id? Facere dolore illo nemo, provident accusamus at similique aliquid consectetur tenetur voluptatum odit quibusdam reprehenderit error quod beatae dolorem. Itaque dignissimos provident, rerum, aspernatur voluptate, numquam consectetur explicabo dicta ipsa excepturi velit? Voluptates adipisci molestias magni ipsam. Placeat possimus iste corporis dolorem, eligendi optio tempora veniam ab maiores nam? Quaerat sit amet obcaecati eum, facilis tempore. Nisi totam molestias neque? Ea eligendi est, commodi quisquam ad quaerat, necessitatibus expedita porro numquam ex quas, voluptas corporis? Pariatur molestias ad odio, provident dolore doloribus id iste placeat omnis unde, architecto aperiam dolor distinctio sapiente modi exercitationem hic non laborum minus sint! Ratione voluptates nulla atque. Tempora explicabo velit quam dolore eligendi in maxime!</p>
-    </div>
+
+    <div></div>
     <!-- Importing Materialize CSS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="./whiteboard.js"></script>

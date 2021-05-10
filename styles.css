@@ -5,13 +5,13 @@
   background-color: white;
   border-radius: 50%;
   position: fixed;
-  -webkit-transition-duration: 200ms;
-          transition-duration: 200ms;
+  -webkit-transition-duration: 100ms;
+  transition-duration: 100ms;
   -webkit-transition-timing-function: ease-out;
-          transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
   pointer-events: none;
   -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 .chat {
@@ -22,3 +22,38 @@ canvas {
   z-index: -1;
 }
 /*# sourceMappingURL=styles.css.map */
+
+.end {
+  position: absolute;
+  /* display: block; */
+  color: black;
+  font-size: 14px;
+  font-family: "montserrat";
+  text-decoration: none;
+  margin-top: 8px;
+  margin-left: 550px;
+  border: 2px solid #ff7675;
+  padding: 3px 10px;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: 1s all ease;
+}
+.end::before {
+  background: #ec4c4c;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  transition: all 0.6s ease;
+}
+
+.end::before {
+  width: 0%;
+  height: 100%;
+}
+
+.end:hover::before {
+  width: 100%;
+}

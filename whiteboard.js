@@ -2,9 +2,14 @@ document.addEventListener("DOMContentLoaded", function () {
   var canvas = document.getElementById("myCanvas");
   var context = canvas.getContext("2d");
   const option = document.querySelectorAll(".btn");
-  var canvasWrapper = document.getElementById("canvas-wrapper").getBoundingClientRect();
+  const num_tags = 8; // Number of tags on the pallete
+  var canvasWrapper = document
+    .getElementById("canvas-wrapper")
+    .getBoundingClientRect();
   const cursor = document.querySelector(".cursor");
   var current_mode = "pencil";
+  var stroke_style = "black";
+  var fill_style = "black";
 
   canvas.width = canvasWrapper.width;
   canvas.height = canvasWrapper.height;
@@ -46,49 +51,55 @@ document.addEventListener("DOMContentLoaded", function () {
   canvas.addEventListener("mouseup", disengage);
 
   ///////////////////////////////////////////////Event Listener for Pallete/////////////////////////////////////////////
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < num_tags; i++) {
     option[i].addEventListener("click", function () {
       if (option[i].classList.contains("eraser")) {
         // The existing content is kept where it doesn't overlap the new shape.
         context.globalCompositeOperation = "destination-out";
         document.body.style.cursor = "auto";
         current_mode = "erase";
-      }
-      else{
+      } else {
         current_mode = "pencil";
       }
       if (option[i].classList.contains("pencil")) {
-      }
-      else if (option[i].classList.contains("red")) {
+        context.fillStyle = fill_style;
+        context.strokeStyle = stroke_style;
+        context.globalCompositeOperation = "source-over";
+      } else if (option[i].classList.contains("red")) {
+        fill_style = "red";
+        stroke_style = "red";
         context.fillStyle = "red";
         context.strokeStyle = "red";
         context.globalCompositeOperation = "source-over";
-      }
-      else if (option[i].classList.contains("blue")) {
+      } else if (option[i].classList.contains("blue")) {
+        fill_style = "blue";
+        stroke_style = "blue";
         context.fillStyle = "blue";
         context.strokeStyle = "blue";
         context.globalCompositeOperation = "source-over";
-      }
-      else if (option[i].classList.contains("green")) {
+      } else if (option[i].classList.contains("green")) {
+        fill_style = "green";
+        stroke_style = "green";
         context.fillStyle = "green";
         context.strokeStyle = "green";
         context.globalCompositeOperation = "source-over";
-      }
-      else if (option[i].classList.contains("black")) {
+      } else if (option[i].classList.contains("black")) {
+        fill_style = "black";
+        stroke_style = "black";
         context.fillStyle = "black";
         context.strokeStyle = "black";
         context.globalCompositeOperation = "source-over";
       }
     });
   }
-  //////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // Eraser animation
 
-  document.addEventListener("mousemove", e => {
-    cursor.setAttribute("style", "top: " + (e.pageY - scrollY) + "px; left: " + (e.pageX) + "px;");
-    if(current_mode == "erase")
-      cursor.style.backgroundColor = "black";
-    else
-      cursor.style.opacity = 0;
-  })
-
+  document.addEventListener("mousemove", (e) => {
+    cursor.setAttribute(
+      "style",
+      "top: " + (e.pageY - scrollY) + "px; left: " + e.pageX + "px;"
+    );
+    if (current_mode == "erase") cursor.style.backgroundColor = "black";
+    else cursor.style.opacity = 0;
+  });
 });
