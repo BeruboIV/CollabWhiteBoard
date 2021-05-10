@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     const socket = io();
 
-    var canvas = document.getElementById("myCanvas");
-    var context = canvas.getContext("2d");
+    const canvas = document.getElementById("myCanvas");
+    const context = canvas.getContext("2d");
     const option = document.querySelectorAll(".btn");
     const num_tags = 8; // Number of tags on the pallete
     const cursor = document.querySelector(".cursor");
@@ -24,10 +24,13 @@ document.addEventListener("DOMContentLoaded", function () {
     var radius = 5;
 
     var putPoint = function (canvas_point) {
+        dragging = canvas_point.drag;
+        current_mode = canvas_point.current_mode;
+        context.fillStyle = canvas_point.fill_style;
+        context.strokeStyle = canvas_point.stroke_style;
+        console.log(canvas_point);
         if (dragging == false) return;
         context.lineWidth = 2 * radius;
-        // const X = canvas_point.offSetX;
-        // const Y = canvas_point.offSetY;
         const { X, Y } = canvas_point;
         context.lineTo(X, Y);
         context.stroke();
@@ -41,14 +44,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var engage = function (canvas_point) {
         // console.log(canvas_point.offsetX);
+        dragging = true;
         socket.emit("client-engage", {
             X: canvas_point.offsetX,
             Y: canvas_point.offsetY,
+            drag: dragging,
+            fill_style: fill_style,
+            stroke_style: stroke_style,
+            current_mode: current_mode,
+            composite:
+                current_mode === "pencil" ? "source-over" : "destination-out",
         });
     };
     socket.on("server-engage", (coors) => {
-        // console.log(coors.X, coors.Y);
-        dragging = true;
         putPoint(coors);
     });
 
@@ -61,53 +69,76 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     canvas.addEventListener("mousedown", engage);
-    canvas.addEventListener("mousemove", putPoint);
+    canvas.addEventListener("mousemove", (canvas_point) => {
+        socket.emit("client-move", {
+            X: canvas_point.offsetX,
+            Y: canvas_point.offsetY,
+            drag: dragging,
+            fill_style: fill_style,
+            stroke_style: stroke_style,
+            current_mode: current_mode,
+            composite:
+                current_mode === "pencil" ? "source-over" : "destination-out",
+        });
+    });
     canvas.addEventListener("mouseup", disengage);
+
+    socket.on("server-move", (info) => {
+        putPoint(info);
+    });
 
     ///////////////////////////////////////////////Event Listener for Pallete/////////////////////////////////////////////
     for (let i = 0; i < num_tags; i++) {
         option[i].addEventListener("click", function () {
             if (option[i].classList.contains("eraser")) {
                 // The existing content is kept where it doesn't overlap the new shape.
-                context.globalCompositeOperation = "destination-out";
+                // context.globalCompositeOperation = "destination-out";
+                fill_style = "white";
+                stroke_style = "white";
+                context.fillStyle = "white";
+                context.strokeStyle = "white";
                 document.body.style.cursor = "auto";
                 current_mode = "erase";
             } else {
+                fill_style = "black";
+                stroke_style = "black";
+                context.fillStyle = "black";
+                context.strokeStyle = "black";
                 current_mode = "pencil";
             }
             if (option[i].classList.contains("pencil")) {
                 context.fillStyle = fill_style;
                 context.strokeStyle = stroke_style;
-                context.globalCompositeOperation = "source-over";
+                // context.globalCompositeOperation = "source-over";
             } else if (option[i].classList.contains("red")) {
                 fill_style = "red";
                 stroke_style = "red";
                 context.fillStyle = "red";
                 context.strokeStyle = "red";
-                context.globalCompositeOperation = "source-over";
+                // context.globalCompositeOperation = "source-over";
             } else if (option[i].classList.contains("blue")) {
                 fill_style = "blue";
                 stroke_style = "blue";
                 context.fillStyle = "blue";
                 context.strokeStyle = "blue";
-                context.globalCompositeOperation = "source-over";
+                // context.globalCompositeOperation = "source-over";
             } else if (option[i].classList.contains("green")) {
                 fill_style = "green";
                 stroke_style = "green";
                 context.fillStyle = "green";
                 context.strokeStyle = "green";
-                context.globalCompositeOperation = "source-over";
+                // context.globalCompositeOperation = "source-over";
             } else if (option[i].classList.contains("black")) {
                 fill_style = "black";
                 stroke_style = "black";
                 context.fillStyle = "black";
                 context.strokeStyle = "black";
-                context.globalCompositeOperation = "source-over";
+                // context.globalCompositeOperation = "source-over";
             }
         });
     }
-    // Eraser animation
 
+    // Eraser animation
     document.addEventListener("mousemove", (e) => {
         cursor.setAttribute(
             "style",

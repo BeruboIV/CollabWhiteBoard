@@ -21,12 +21,16 @@ io.on("connection", (socket) => {
         //TODO: Add user to participants list
     });
 
-    socket.on("client-engage", (coors) => {
-        io.emit("server-engage", coors);
+    socket.on("client-engage", (info) => {
+        io.emit("server-engage", info);
     });
 
     socket.on("client-disengage", () => {
         io.emit("server-disengage");
+    });
+
+    socket.on("client-move", (info) => {
+        io.emit("server-move", info);
     });
 });
 
