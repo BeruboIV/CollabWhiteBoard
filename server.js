@@ -3,7 +3,7 @@ const app = express();
 const http = require("http").Server(app);
 const io = require("socket.io")(http);
 const path = require("path");
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 const users = {};
 
@@ -17,8 +17,10 @@ app.get("/", (req, res) => {
 io.on("connection", (socket) => {
     console.log(`A new user has joined: ${socket.id}`);
     socket.on("new-user", (name) => {
-        users[socket.id] = name;
-        //TODO: Add user to participants list
+        //COMPLETE: Add user to participants list
+        socket.broadcast.emit("add-user", name);
+        socket.emit("add-user-new", users); // Update the current (Newly joined user's) participant list
+        users[socket.id] = name; // Add the username to the database
     });
 
     socket.on("client-engage", (info) => {
