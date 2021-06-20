@@ -39,22 +39,25 @@
         </div>
 
         <div class="row flex-container">
-            <div class="col s1 pallete" style="border-top: solid">
+            <div
+                class="col s1 pallete"
+                style="border-top: solid; width: 70px; padding: 0px"
+            >
                 <div
                     class="btn color red"
-                    style="background-color: red; width: 75%"
+                    style="background-color: red; width: 100%"
                 ></div>
                 <div
                     class="btn color black"
-                    style="background-color: black; width: 75%"
+                    style="background-color: black; width: 100%"
                 ></div>
                 <div
                     class="btn color green"
-                    style="background-color: green; width: 75%"
+                    style="background-color: green; width: 100%"
                 ></div>
                 <div
                     class="btn color blue"
-                    style="background-color: blue; width: 75%"
+                    style="background-color: blue; width: 100%"
                 ></div>
                 <!-- <div class="btn increase"></div>
         <div class="btn decrease"></div> -->
@@ -62,35 +65,51 @@
                     src="./images/eraser.svg"
                     alt="eraser"
                     class="btn eraser"
-                    style="width: 75%"
+                    style="width: 100%"
                 />
                 <img
                     src="./images/pencil.svg"
                     alt="pencil"
                     class="btn draw pencil"
-                    style="width: 75%"
+                    style="width: 100%"
                 />
                 <img
                     src="./images/undo.svg"
                     alt="undo"
                     class="btn undo"
-                    style="width: 75%"
+                    style="width: 100%"
                 />
                 <img
                     src="./images/redo.svg"
                     alt="undo"
                     class="btn redo"
-                    style="width: 75%"
+                    style="width: 100%"
                 />
             </div>
             <div
                 class="col s9 canvas me"
                 id="canvas-wrapper"
-                style="border: solid; height: 700px"
+                style="
+                    border: solid;
+                    height: 700px;
+                    width: 79.71rem;
+                    padding: 0px;
+                "
             >
                 <canvas id="myCanvas" style="margin-left: 0%"></canvas>
             </div>
-            <div class="col s2 chat" style="border: solid; height: 700px"></div>
+            <div
+                class="col s2"
+                id="USERS"
+                style="
+                    border: solid;
+                    height: 700px;
+                    padding: 0px;
+                    overflow: auto;
+                "
+            >
+                <div class="participants">PARTICIPANTS</div>
+            </div>
         </div>
 
         <div></div>
