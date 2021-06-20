@@ -6,13 +6,33 @@ document.addEventListener("DOMContentLoaded", function () {
     const option = document.querySelectorAll(".btn");
     const num_tags = 8; // Number of tags on the pallete
     const cursor = document.querySelector(".cursor");
+    const users = document.getElementById("USERS");
+    const name = prompt("Enter you name: ");
+
+    addUser(name + " (you)");
+    socket.emit("new-user", name);
+    socket.on("add-user", (name) => {
+        // Catches the broadcasted message from the server to add new user name to all users list
+        addUser(name);
+    });
+    socket.on("add-user-new", (names) => {
+        for (const [id, name] of Object.entries(names)) addUser(name);
+    });
+
+    // Function to display names in participants list
+    function addUser(name) {
+        const ele = document.createElement("div");
+        ele.classList = "user";
+        ele.textContent = name;
+        users.append(ele);
+    }
+
     var canvasWrapper = document
         .getElementById("canvas-wrapper")
         .getBoundingClientRect();
     var current_mode = "pencil";
     var stroke_style = "black";
     var fill_style = "black";
-
     canvas.width = canvasWrapper.width;
     canvas.height = canvasWrapper.height;
     /* This causes the canvas to refresh but it will work for now.*/
@@ -25,10 +45,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var putPoint = function (canvas_point) {
         dragging = canvas_point.drag;
-        current_mode = canvas_point.current_mode;
         context.fillStyle = canvas_point.fill_style;
         context.strokeStyle = canvas_point.stroke_style;
-        console.log(canvas_point);
         if (dragging == false) return;
         context.lineWidth = 2 * radius;
         const { X, Y } = canvas_point;
@@ -51,13 +69,12 @@ document.addEventListener("DOMContentLoaded", function () {
             drag: dragging,
             fill_style: fill_style,
             stroke_style: stroke_style,
-            current_mode: current_mode,
             composite:
                 current_mode === "pencil" ? "source-over" : "destination-out",
         });
     };
-    socket.on("server-engage", (coors) => {
-        putPoint(coors);
+    socket.on("server-engage", (info) => {
+        putPoint(info);
     });
 
     var disengage = function () {
@@ -78,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
             stroke_style: stroke_style,
             current_mode: current_mode,
             composite:
-                current_mode === "pencil" ? "source-over" : "destination-out",
+                current_mode === "pencil" ? "source-over" : "destination-out", // Eraser or pencil
         });
     });
     canvas.addEventListener("mouseup", disengage);
