@@ -1,59 +1,76 @@
 .cursor {
-  width: 20px;
-  height: 20px;
-  border: 1px dotted white;
-  background-color: white;
-  border-radius: 50%;
-  position: fixed;
-  -webkit-transition-duration: 100ms;
-  transition-duration: 100ms;
-  -webkit-transition-timing-function: ease-out;
-  transition-timing-function: ease-out;
-  pointer-events: none;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border: 1px dotted white;
+    background-color: white;
+    border-radius: 50%;
+    position: fixed;
+    -webkit-transition-duration: 70ms;
+    transition-duration: 70ms;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+    pointer-events: none;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
 .chat {
-  z-index: 1;
+    z-index: 1;
 }
 
 canvas {
-  z-index: -1;
+    z-index: -1;
+}
+
+.participants {
+    width: 100%;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 20px;
+    font-family: "Times New Roman";
+    border-bottom: solid;
+    height: 50px;
+    /* background-color: #cc66ff; */
+}
+
+.user {
+    width: 100%;
+    font-family: "Times New Roman";
+    font-size: 16px;
 }
 /*# sourceMappingURL=styles.css.map */
 
 .end {
-  position: absolute;
-  /* display: block; */
-  color: black;
-  font-size: 14px;
-  font-family: "montserrat";
-  text-decoration: none;
-  margin-top: 8px;
-  margin-left: 550px;
-  border: 2px solid #ff7675;
-  padding: 3px 10px;
-  text-transform: uppercase;
-  overflow: hidden;
-  transition: 1s all ease;
+    position: absolute;
+    /* display: block; */
+    color: black;
+    font-size: 14px;
+    font-family: "montserrat";
+    text-decoration: none;
+    margin-top: 8px;
+    margin-left: 550px;
+    border: 2px solid #ff7675;
+    padding: 3px 10px;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 1s all ease;
 }
 .end::before {
-  background: #ec4c4c;
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: -1;
-  transition: all 0.6s ease;
+    background: #ec4c4c;
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    transition: all 0.6s ease;
 }
 
 .end::before {
-  width: 0%;
-  height: 100%;
+    width: 0%;
+    height: 100%;
 }
 
 .end:hover::before {
-  width: 100%;
+    width: 100%;
 }

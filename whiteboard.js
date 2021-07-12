@@ -152,6 +152,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 context.strokeStyle = "black";
                 // context.globalCompositeOperation = "source-over";
             }
+            // else if(option[i].classList.contains("increase")){
+            //     radius++;
+            // }
+            // else if(option[i].classList.contains("decrase")){
+            //     radius--;
+            // }
         });
     }
 
